@@ -1,20 +1,29 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-     bool found = false;
+        unordered_map<char, int>have;
+        unordered_map<char, int>need;
 
-     unordered_map<char , int>map;
+        for(char ch: magazine){
+            have[ch]++;
+        }
+        for(char ch:ransomNote){
+            need[ch]++;
+        }
 
-     for(char ch:magazine){
-        map[ch]++;
-     }   
+return fun(have, need);        
+    }
 
-     for(auto ch: ransomNote){
-      if(map[ch] == 0){
-        return false;
-      }
-      map[ch]--;
-     }
-     return true;
+    bool fun(unordered_map<char, int>have,unordered_map<char,int>need){
+
+        for(auto i:need){
+        char c = i.first;
+        int fneed = i.second;
+        int fhave = have[c];
+        if(fhave<fneed){
+            return false;
+        }
+        }
+        return true;
     }
 };
