@@ -2,23 +2,18 @@ class Solution {
 public:
     int missingMultiple(vector<int>& nums, int k) {
         
-        unordered_map<int, int> freq;
+        unordered_set<int> set;
 
     for(auto i: nums){
-        freq[i]++;
+        set.insert(i);
     }
 
-    for(int i=1;; i++){
+    for(int i = 1; ; i++){
+    int num = k * i;
 
-    int num = k*i;
-
-    if(freq.find(num) != freq.end()){
-        continue;
-    }else{
+    if(set.find(num) == set.end()){
         return num;
     }
-
-    }
-    return -1;
+}
     }
 };
